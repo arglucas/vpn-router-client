@@ -1,0 +1,30 @@
+add pre-down service hostapd stop
+
+to interfaces file
+
+add information to file to show routing wlan0 to wlan1 before the tun0 so that people can test.
+(Adafruit article sudo iptables part swap eth0 for wlan0 and wlan0 for wlan1, do not persist this as it would mean that you would route over local network if the VPN fails which is not what you want, only ever to be over the tunnel).
+
+<key> section of file. Move into script.
+remove .ovpn key password openssl rsa -in protected.key -out not.key
+
+findstatsovpn.py python file hasn't been checked yet but may provide status. Also look at 'status' part of vpn file.
+
+Mention wpa-roam issue and how when the VPN goes up wlan0 gets pulled down tun0 is treated the same way as if you plugged in eth0. Doesn't affect wlan1 as it is statically configured.
+
+TODO:
+Need to configure a way to send a receive stats from both endpoints and potentially send a message to connect back for configuration.
+
+
+Articles:
+
+http://makezine.com/projects/browse-anonymously-with-a-diy-raspberry-pi-vpntor-router/
+https://github.com/jenssegers/RTL8188-hostapd/releases
+http://jenssegers.be/
+https://learn.adafruit.com/downloads/pdf/setting-up-a-raspberry-pi-as-a-wifi-access-point.pdf
+http://ubuntuforums.org/showthread.php?t=2198079
+http://alphaloop.blogspot.ie/2014/01/raspberry-pi-as-vpn-wireless-access.html
+http://elinux.org/RPI-Wireless-Hotspot
+http://www.daveconroy.com/turn-your-raspberry-pi-into-a-wifi-hotspot-with-edimax-nano-usb-ew-7811un-rtl8188cus-chipset/
+http://forum.doozan.com/read.php?2,6300
+http://raspberrypi.stackexchange.com/questions/9257/whats-the-difference-between-wpa-roam-and-wpa-conf-in-the-etc-network-inte
