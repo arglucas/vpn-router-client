@@ -12,14 +12,15 @@ import netifaces
 i = [{ifname: netifaces.ifaddresses(ifname)} for ifname in netifaces.interfaces()]
 i_json = json.dumps(i, indent=2);
 
+region = "eu-west-1"
 
 logging.basicConfig(filename="onReboot.log", level=logging.DEBUG)
 
-s = boto.sns.connect_to_region("eu-west-1")
+s = boto.sns.connect_to_region(region)
 
-topic = "arn:aws:sns:eu-west-1:817794132868:HostAddress"
-message = "RPI2 Rebooted.\n\n" + i_json
-subject = "[NOTIFICATION] RPI2 Rebooted"
+topic = "arn:aws:sns:REGION:ACCOUNTNUM:HostAddress"
+message = "MACHINE Rebooted.\n\n" + i_json
+subject = "[NOTIFICATION] MACHINE Rebooted"
 
 pub = s.publish(topic, message, subject=subject)
 
